@@ -1,0 +1,16 @@
+{
+    "name": "pyuen/prism-api",
+    "authors": [
+        {
+            "name": "Phillip Yuen",
+            "email": "pyuen@prestigepeo.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "PrismApi\\": "src/"
+        }
+    }
+
+}
