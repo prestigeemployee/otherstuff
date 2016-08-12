@@ -4,6 +4,12 @@ require_once __DIR__ . '/vendor/autoload.php';
 
 use PrismApi\PrismApi;
 
+
+define('CLIENTID', 'ENTERHERE');
+define('EMPLOYEEID', 'ENTERHERE');
+
+
 $api = new PrismApi();
 
-echo '<pre>' . var_export($api->getGeoLocations('77006'), true) . '</pre>';
+echo '<pre>' . var_export($api->getPayrollSchedule(CLIENTID), true) . '</pre>';
+

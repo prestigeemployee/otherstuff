@@ -5,7 +5,7 @@ namespace PrismApi;
 interface PrismInterface
 {
 	/**
-	 * EMPLOYEE METHODS
+	 * employee METHODS
 	 * 
 	*/
 
@@ -20,13 +20,13 @@ interface PrismInterface
 	public function getPayRateHistory($clientId, $employeeId);
 
 	/**
-	 * SUBCRIPTION METHODS
+	 * subcription METHODS
 	 * 
 	 */
 	
 
 	/**
-	 * CLIENTMASTER METHODS
+	 * clientmaster METHODS
 	 * 
 	 */
 	public function getClientCodes($clientId, $options = '');
@@ -38,12 +38,23 @@ interface PrismInterface
     public function getPayrollSchedule($clientId);
 
     /**
-     * BENEFITS METHODS
+     * benefits METHODS
      * 
      */
 
     public function getActiveBenefitPlans($clientId, $employeeId, $planId, $effectiveDate);
 
+    public function getActiveDependents($clientId, $employeeId);
     
+    public function getActiveRetirementPlan($clientId, $employeeId, $effectiveDate);
+
+    
+    
+    /**
+     *  deductions METHODS
+     * 
+     */
+    
+
 
 }

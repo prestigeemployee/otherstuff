@@ -8,6 +8,7 @@
 namespace PrismApi;
 
 use PrismApi\PrismInterface;
+use PrismApi\PrismCurlService;
 
 Class PrismApi implements PrismInterface
 {
@@ -15,9 +16,14 @@ Class PrismApi implements PrismInterface
     protected $password = 'ENTERHERE';
     protected $peoId = 'ENTERHERE';
     protected $url = 'https://api.hrpyramid.net/api-1.4/services/rest/';
+    protected $service;
+    public $session;
+
     public function __construct()
     {
+        $this->service = new PrismCurlService();
         $this->session = $this->getSessionId();
+        
     }
     protected function getSessionId() 
     {
@@ -27,7 +33,7 @@ Class PrismApi implements PrismInterface
         'peoId'             =>          $this->peoId
         ];
         $url = $this->url . 'login/createPeoSession';
-        return $this->run($url, $fields, 'POST')->sessionId;
+        return $this->service->run($url, $fields, 'POST')->sessionId;
     }    
 
     public function getAddressInfo($clientId, $employeeId)
@@ -37,8 +43,9 @@ Class PrismApi implements PrismInterface
         'clientId'          =>          $clientId,
         'employeeId'        =>          $employeeId
         ];
+
         $url = $this->url . 'employee/getAddressInfo';
-        return $this->run($url,$fields);
+        return $this->service->run($url, $fields);
     }
 
     /**
@@ -190,6 +197,7 @@ Class PrismApi implements PrismInterface
         return $this->run($url,$fields);
     }
 
+    
 
     // TODO: WHAT IS planId?
     public function getActiveBenefitPlans($clientId, $employeeId, $planId, $effectiveDate)
@@ -243,6 +251,155 @@ Class PrismApi implements PrismInterface
         return $this->run($url,$fields);
     }
 
+    /**
+     * [getBenefitPlans description]
+     * @param  string clientId   [description]
+     * @param  string employeeId [description]
+     * @param  string $planId [description]
+     * @return json             
+     */
+    public function getBenefitPlans($clientId, $employeeId, $planId)
+    {
+        $fields = [
+            'sessionId'             =>          $this->session,
+            'clientId'              =>          $clientId,
+            'employeeId'            =>          $employeeId,
+            'planId'                =>          $planId
+        ];
+    
+        $url = $this->url . 'benefits/getBenefitPlans';
+        return $this->run($url,$fields);
+    }
+
+    /**
+     * [getDependents description]
+     * @param  string clientId   [description]
+     * @param  string employeeId [description]
+     * @return json             
+     */
+    public function getDependents($clientId, $employeeId)
+    {
+        $fields = [
+            'sessionId'             =>          $this->session,
+            'clientId'                =>          $clientId,
+            'employeeId'                =>          $employeeId
+        ];
+    
+        $url = $this->url . 'benefits/getDependents';
+        return $this->run($url,$fields);
+    }
+
+    /**
+     * [getFlexPlans description]
+     * @param  string clientId   [description]
+     * @param  string employeeId [description]
+     * @return json             
+     */
+    public function getFlexPlans($clientId, $employeeId)
+    {
+        $fields = [
+            'sessionId'             =>          $this->session,
+            'clientId'                =>          $clientId,
+            'employeeId'                =>          $employeeId,
+        ];
+    
+        $url = $this->url . 'benefits/getFlexPlans';
+        return $this->run($url,$fields);
+    }
+
+    /**
+     * [getPaidTimeOff description]
+     * @param  string clientId   [description]
+     * @param  string employeeId [description]
+     * @return json             
+     */
+    public function getPaidTimeOff($clientId, $employeeId)
+    {
+        $fields = [
+            'sessionId'             =>          $this->session,
+            'clientId'                =>          $clientId,
+            'employeeId'                =>          $employeeId,
+        ];
+    
+        $url = $this->url . 'benefits/getPaidTimeOff';
+        return $this->run($url,$fields);
+    }
+
+    /**
+     * [getPaidTimeOffPlans description]
+     * @param  string clientId   [description]
+     * @return json             
+     */
+    public function getPaidTimeOffPlans($clientId)
+    {
+        $fields = [
+            'sessionId'             =>          $this->session,
+            'clientId'                =>          $clientId,
+        ];
+    
+        $url = $this->url . 'benefits/getPaidTimeOffPlans';
+        return $this->run($url,$fields);
+    }
+
+    /**
+     * [getRetirementLoans description]
+     * @param  string clientId   [description]
+     * @param  string employeeId [description]
+     * @return json             
+     */
+    public function getRetirementLoans($clientId, $employeeId)
+    {
+        $fields = [
+            'sessionId'             =>          $this->session,
+            'clientId'                =>          $clientId,
+            'employeeId'                =>          $employeeId,
+        ];
+    
+        $url = $this->url . 'benefits/getRetirementLoans';
+        return $this->run($url,$fields);
+    }
+
+    /**
+     * [getRetirementPlan description]
+     * @param  string clientId   [description]
+     * @param  string employeeId [description]
+     * @return json             
+     */
+    public function getRetirementPlan($clientId, $employeeId)
+    {
+        $fields = [
+            'sessionId'             =>          $this->session,
+            'clientId'                =>          $clientId,
+            'employeeId'                =>          $employeeId,
+        ];
+    
+        $url = $this->url . 'benefit/getRetirementPlan';
+        return $this->run($url,$fields);
+    }
+
+    /**
+     * [getDeductions description]
+     * @param  string clientId   [description]
+     * @param  string employeeId [description]
+     * @param  string options [description]
+     * @return json             
+     */
+    public function getDeductions($clientId, $employeeId, $options = '')
+    {
+        $fields = [
+            'sessionId'             =>          $this->session,
+            'clientId'                =>          $clientId,
+            'employeeId'                =>          $employeeId,
+            'options'                =>          $options
+        ];
+    
+        $url = $this->url . 'deductions/getDeductions';
+        return $this->run($url,$fields);
+    }
+
+
+
+
 
 
     /**
@@ -270,6 +427,9 @@ Class PrismApi implements PrismInterface
             die("BAD METHOD");
             break;
         }
+
+        echo '<pre>' . var_export(curl_getinfo($handle), true) . '</pre>';
+
 
         $result = curl_exec($handle);
         if($result === FALSE)

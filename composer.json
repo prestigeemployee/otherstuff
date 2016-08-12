@@ -6,7 +6,12 @@
             "email": "pyuen@prestigepeo.com"
         }
     ],
-    "require": {},
+    "require": {
+        
+    },
+    "require-dev": {
+    	
+    },
     "autoload": {
         "psr-4": {
             "PrismApi\\": "src/"
