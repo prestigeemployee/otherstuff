@@ -16,7 +16,7 @@ Class PrismSessionHandler
 	
 	public static $service;
 
-	public function init()
+	private function init()
 	{
 		static::$username = $_ENV['username'];
         static::$password = $_ENV['password'];
