@@ -12,5 +12,4 @@ define('EMPLOYEEID', $_ENV['EMPLOYEEID']);
 
 $api = new PrismApi();
 
-echo '<pre>' . var_export($api->getSubscription('something'), true) . '</pre>';
-
+echo '<pre>' . var_export($api->getPayrollSchedule(CLIENTID), true) . '</pre>';

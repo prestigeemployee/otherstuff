@@ -12,21 +12,14 @@ use PrismApi\PrismCurlService;
 
 Class PrismApi implements PrismInterface
 {
-    protected $username;
-    protected $password;
-    protected $peoId;
     protected $url = 'https://api.hrpyramid.net/api-1.4/services/rest/';
     protected $service;
     public $session;
 
     public function __construct()
     {
-        $this->username = $_ENV['username'];
-        $this->password = $_ENV['password'];
-        $this->peoId = $_ENV['peoId'];
-
         $this->service = new PrismCurlService();
-        $this->session = $this->getSessionId();
+        $this->session = (new PrismSessionHandler())->makeSession($this->service, $this->url);
         
     }
     protected function getSessionId() 
@@ -547,9 +540,9 @@ Class PrismApi implements PrismInterface
         return $this->service->run($url,$fields);
     }
 
-
-
-
+    public function __destruct() {
+        curl_close($this->service->handle);
+    }
 
 
 

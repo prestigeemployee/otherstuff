@@ -7,7 +7,7 @@ namespace PrismApi;
  */
 class PrismCurlService
 {
-	protected $handle;
+	public $handle;
 
     /**
      * summary
@@ -49,6 +49,7 @@ class PrismCurlService
 
     	$result = curl_exec($handle);
     	
+    	// TODO: DO NOT DO THIS IN PRODUCTION
     	// if curl_exec fails
     	if($result === FALSE) {
     		die(curl_error($handle));
