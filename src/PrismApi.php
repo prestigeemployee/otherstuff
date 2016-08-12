@@ -12,7 +12,7 @@ use PrismApi\PrismCurlService;
 
 Class PrismApi implements PrismInterface
 {
-    protected $url = 'https://api.hrpyramid.net/api-1.4/services/rest/';
+    protected $url;
     protected $service;
     public $session;
 
@@ -25,6 +25,7 @@ Class PrismApi implements PrismInterface
         $this->username = $_ENV['username'];
         $this->password = $_ENV['password'];
         $this->peoId = $_ENV['peoId'];
+        $this->url = $_ENV['url'];
 
         $this->service = new PrismCurlService();
         $this->session = PrismSessionHandler::makeSession();
