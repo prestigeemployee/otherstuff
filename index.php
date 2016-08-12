@@ -9,7 +9,6 @@ use PrismApi\PrismApi;
 define('CLIENTID', $_ENV['CLIENTID']);
 define('EMPLOYEEID', $_ENV['EMPLOYEEID']);
 
-
 $api = new PrismApi();
 
-echo '<pre>' . var_export($api->getPayrollSchedule(CLIENTID), true) . '</pre>';
+echo '<pre>' . var_export($api->getEmployeeList(CLIENTID), true) . '</pre>';

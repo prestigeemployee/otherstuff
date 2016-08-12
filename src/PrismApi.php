@@ -16,10 +16,18 @@ Class PrismApi implements PrismInterface
     protected $service;
     public $session;
 
+    protected $username;
+    protected $password;
+    protected $peoId;
+
     public function __construct()
     {
+        $this->username = $_ENV['username'];
+        $this->password = $_ENV['password'];
+        $this->peoId = $_ENV['peoId'];
+
         $this->service = new PrismCurlService();
-        $this->session = (new PrismSessionHandler())->makeSession($this->service, $this->url);
+        $this->session = PrismSessionHandler::makeSession();
         
     }
     protected function getSessionId() 

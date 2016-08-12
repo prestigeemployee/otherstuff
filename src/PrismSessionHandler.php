@@ -10,27 +10,33 @@ use Some\Dependency;
 
 Class PrismSessionHandler
 {
-	protected $username;
-    protected $password;
-    protected $peoId;
+	public static $username;
+    public static $password;
+    public static $peoId;
+	
+	public static $service;
 
-	function __construct($foo = null)
+	public function init()
 	{
-		$this->username = $_ENV['username'];
-        $this->password = $_ENV['password'];
-        $this->peoId = $_ENV['peoId'];
+		static::$username = $_ENV['username'];
+        static::$password = $_ENV['password'];
+        static::$peoId = $_ENV['peoId'];
+
+        static::$service = new PrismCurlService();
 	}
 
-	public function makeSession($service, $serviceUrl) {
-		$fields = [
-	        'username'              =>          $this->username,
-	        'password'              =>          $this->password,
-	        'peoId'                 =>          $this->peoId
-        ];
-        
-        $url = $serviceUrl . 'login/createPeoSession';
+	static function makeSession() {
+		static::init();
 
-        return $service->run($url, $fields, 'POST')->sessionId;
+		$fields = [
+	        'username'              =>          static::$username,
+	        'password'              =>          static::$password,
+	        'peoId'                 =>          static::$peoId
+	    ];
+        
+        $url = $_ENV['url'] . 'login/createPeoSession';
+
+        return static::$service->run($url, $fields, 'POST')->sessionId;
 	}
 	
 }
