@@ -42,9 +42,10 @@ Class PrismApi
         $mh = $this->methodsHandlerRepo->getMethodHandler($name);
 
         echo 'PrismApi::__call(): <pre>' . var_export($mh, true) . '</pre> <br />';
+        echo 'PrismApi::__call(): <pre>' . var_export($args, true) . '</pre> <br />';
         
         
-        // return call_user_func([$mh, $name], $args[0], $args[1]);
+        return call_user_func_array([$mh, $name], $args);
     }
 
     // TODO: put this in an interface?

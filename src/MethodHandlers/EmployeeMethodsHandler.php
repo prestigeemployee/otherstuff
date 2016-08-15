@@ -27,14 +27,20 @@ Class EmployeeMethodsHandler extends MethodsHandlerAbstract
      */
     public function getEmployee($employeeId, $clientId, $options = '')
     {
-        $fields = [
-        'sessionId'             =>          $this->session,
-        'employeeId'            =>          $employeeId,
-        'clientId'              =>          $clientId,
-        'options'               =>          $options
-        ];
-        $url = $this->url . 'employee/getEmployee';
-        return $this->service->run($url,$fields);
+        echo 'EmployeeMethodsHandler::getEmployee(): <pre>' . var_export([
+            'employeeId' => $employeeId,
+            'clientId' => $clientId
+            ], true) . '</pre> <br />';
+        
+        
+        // $fields = [
+        // 'sessionId'             =>          $this->session,
+        // 'employeeId'            =>          $employeeId,
+        // 'clientId'              =>          $clientId,
+        // 'options'               =>          $options
+        // ];
+        // $url = $this->url . 'employee/getEmployee';
+        // return $this->service->run($url,$fields);
     }
 	
 }
