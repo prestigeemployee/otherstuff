@@ -16,14 +16,11 @@ Class MethodsHandlerRepo
 	protected $methodsHandlerList = [];
 
 	function __construct()
-	{
-		echo 'MethodsHandlerRepo constructed <br />';
-
-	}
+	{}
 
 	public function addHandler(MethodsHandlerAbstract $mh)
 	{
-		array_push($this->methodsHandlerList, $mh);		
+		$this->methodsHandlerList[get_class($mh)] = $mh;
 	}
 
 	public function getMethodHandler($name)
