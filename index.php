@@ -4,11 +4,15 @@ require_once __DIR__ . '/vendor/autoload.php';
 require_once __DIR__ . './.env.php';
 
 use PrismApi\PrismApi;
-
+use PrismApi\MethodHandlers\EmployeeMethodsHandler;
+use PrismApi\MethodHandlers\SubscriptionMethodsHandler;
 
 define('CLIENTID', $_ENV['CLIENTID']);
 define('EMPLOYEEID', $_ENV['EMPLOYEEID']);
 
 $api = new PrismApi();
 
-echo '<pre>' . var_export($api->getEmployeeList(CLIENTID), true) . '</pre>';
+// TODO: maybe put all MethodsHandlers in .env?
+$api->addHandler(new EmployeeMethodsHandler, new SubscriptionMethodsHandler);
+
+$api->getEmployee(EMPLOYEEID, CLIENTID);

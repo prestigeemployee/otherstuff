@@ -7,12 +7,15 @@
 
 namespace PrismApi;
 
-use PrismApi\PrismInterface;
+use PrismApi\MethodHandlers\MethodsHandlerAbstract;
 use PrismApi\PrismCurlService;
+use PrismApi\PrismInterface;
 use PrismApi\Services\MethodsHandlerRepo;
 
-Class PrismApi implements PrismInterface
+
+Class PrismApi
 {
+    // TODO: delete this later
     protected $url;
     protected $service;
     public $session;
@@ -32,6 +35,25 @@ Class PrismApi implements PrismInterface
         $this->service = new PrismCurlService();
         $this->session = PrismSessionHandler::makeSession();
         $this->methodsHandlerRepo = new MethodsHandlerRepo();
+    }
+
+    public function __call($name, $args)
+    {
+        $mh = $this->methodsHandlerRepo->getMethodHandler($name);
+
+        echo 'PrismApi::__call(): <pre>' . var_export($mh, true) . '</pre> <br />';
+        
+        
+        // return call_user_func([$mh, $name], $args[0], $args[1]);
+    }
+
+    // TODO: put this in an interface?
+    function addHandler(MethodsHandlerAbstract ... $args)
+    {
+        foreach ($args as $arg) {
+            $this->methodsHandlerRepo->addHandler($arg);
+            
+        }
     }
 
     protected function getSessionId() 
@@ -57,24 +79,24 @@ Class PrismApi implements PrismInterface
         return $this->service->run($url, $fields);
     }
 
-    /**
-     * [getEmployee description]
-     * @param  string $employeeId [description]
-     * @param  string $clientId   [description]
-     * @param  string $options    [description]
-     * @return json             
-     */
-    public function getEmployee($employeeId, $clientId, $options = '')
-    {
-        $fields = [
-        'sessionId'             =>          $this->session,
-        'employeeId'            =>          $employeeId,
-        'clientId'              =>          $clientId,
-        'options'               =>          $options
-        ];
-        $url = $this->url . 'employee/getEmployee';
-        return $this->service->run($url,$fields);
-    }
+    // /**
+    //  * [getEmployee description]
+    //  * @param  string $employeeId [description]
+    //  * @param  string $clientId   [description]
+    //  * @param  string $options    [description]
+    //  * @return json             
+    //  */
+    // public function getEmployee($employeeId, $clientId, $options = '')
+    // {
+    //     $fields = [
+    //     'sessionId'             =>          $this->session,
+    //     'employeeId'            =>          $employeeId,
+    //     'clientId'              =>          $clientId,
+    //     'options'               =>          $options
+    //     ];
+    //     $url = $this->url . 'employee/getEmployee';
+    //     return $this->service->run($url,$fields);
+    // }
 
     /**
      * [getEmployeeList description]
