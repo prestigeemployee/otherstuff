@@ -6,8 +6,6 @@
 
 namespace PrismApi;
 
-use Some\Dependency;
-
 Class PrismSessionHandler
 {
 	public static $username;

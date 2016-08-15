@@ -9,12 +9,14 @@ namespace PrismApi;
 
 use PrismApi\PrismInterface;
 use PrismApi\PrismCurlService;
+use PrismApi\Services\MethodsHandlerRepo;
 
 Class PrismApi implements PrismInterface
 {
     protected $url;
     protected $service;
     public $session;
+    protected $methodsHandlerRepo;
 
     protected $username;
     protected $password;
@@ -29,8 +31,9 @@ Class PrismApi implements PrismInterface
 
         $this->service = new PrismCurlService();
         $this->session = PrismSessionHandler::makeSession();
-        
+        $this->methodsHandlerRepo = new MethodsHandlerRepo();
     }
+
     protected function getSessionId() 
     {
         $fields = [
