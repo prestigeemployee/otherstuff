@@ -18,9 +18,6 @@ Class MethodsHandlerRepo
 	function __construct()
 	{
 		echo 'MethodsHandlerRepo constructed <br />';
-		
-		// create a log channel
-
 
 	}
 
@@ -37,6 +34,5 @@ Class MethodsHandlerRepo
 				return $methodsHandler;
 		}
 	}
-	
 }
 

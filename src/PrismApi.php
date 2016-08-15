@@ -55,7 +55,6 @@ Class PrismApi
     {
         foreach ($args as $arg) {
             $this->methodsHandlerRepo->addHandler($arg);
-            
         }
     }
 
