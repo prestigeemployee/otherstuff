@@ -15,4 +15,5 @@ $api = new PrismApi();
 // TODO: maybe put all MethodsHandlers in .env?
 $api->addHandler(new EmployeeMethodsHandler, new SubscriptionMethodsHandler);
 
-$api->getEmployee(EMPLOYEEID, CLIENTID);
+echo 'Index.php: <pre>' . var_export($api->getSubscription('202349'), true) . '</pre> <br />';
+

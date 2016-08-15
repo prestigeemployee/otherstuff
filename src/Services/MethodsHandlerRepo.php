@@ -26,10 +26,7 @@ Class MethodsHandlerRepo
 
 	public function addHandler(MethodsHandlerAbstract $mh)
 	{
-		array_push($this->methodsHandlerList, $mh);
-
-		echo 'MethodsHandlerRepo::addHandler: <pre>' . var_export($this->methodsHandlerList, true) . '</pre>';
-		
+		array_push($this->methodsHandlerList, $mh);		
 	}
 
 	public function getMethodHandler($name)
@@ -37,7 +34,7 @@ Class MethodsHandlerRepo
 		foreach ($this->methodsHandlerList as $methodsHandler)
 		{
 			if (in_array($name, $methodsHandler->listMethods()))
-				return get_class($methodsHandler);
+				return $methodsHandler;
 		}
 	}
 	

@@ -17,8 +17,6 @@ Class PrismApi
 {
     // TODO: delete this later
     protected $url;
-    protected $service;
-    public $session;
     protected $methodsHandlerRepo;
 
     protected $username;
@@ -30,25 +28,29 @@ Class PrismApi
         $this->username = $_ENV['username'];
         $this->password = $_ENV['password'];
         $this->peoId = $_ENV['peoId'];
+        // TODO: delete this later since MethodsHandlerAbstract will take care of it
         $this->url = $_ENV['url'];
 
-        $this->service = new PrismCurlService();
-        $this->session = PrismSessionHandler::makeSession();
         $this->methodsHandlerRepo = new MethodsHandlerRepo();
     }
 
+    /**
+     * receives the api call
+     * @param  string $name method name e.g., getEmployee()
+     * @param  array $args arguments passed
+     * @return json       response by API
+     */
     public function __call($name, $args)
     {
         $mh = $this->methodsHandlerRepo->getMethodHandler($name);
 
-        echo 'PrismApi::__call(): <pre>' . var_export($mh, true) . '</pre> <br />';
-        echo 'PrismApi::__call(): <pre>' . var_export($args, true) . '</pre> <br />';
-        
-        
         return call_user_func_array([$mh, $name], $args);
     }
 
-    // TODO: put this in an interface?
+    /**
+     * add a methodsHandler
+     * @param MethodsHandlerAbstract $args dynamic number of MethodsHandlerAbstract arguments
+     */
     function addHandler(MethodsHandlerAbstract ... $args)
     {
         foreach ($args as $arg) {
@@ -68,6 +70,12 @@ Class PrismApi
         return $this->service->run($url, $fields, 'POST')->sessionId;
     }    
 
+    /**
+     * [getAddressInfo description]
+     * @param  string $clientId   [description]
+     * @param  string $employeeId [description]
+     * @return [type]             [description]
+     */
     public function getAddressInfo($clientId, $employeeId)
     {
         $fields = [
@@ -201,21 +209,21 @@ Class PrismApi
         return $this->service->run($url,$fields);
     }
 
-    /**
-     * [getSubscription description]
-     * @param  string subscriptionId   [description]
-     * @return json             
-     */
-    public function getSubscription($subscriptionId)
-    {
-        $fields = [
-            'sessionId'         =>          $this->session,
-            'subscriptionId'    =>          $subscriptionId,
-        ];
+    // /**
+    //  * [getSubscription description]
+    //  * @param  string subscriptionId   [description]
+    //  * @return json             
+    //  */
+    // public function getSubscription($subscriptionId)
+    // {
+    //     $fields = [
+    //         'sessionId'         =>          $this->session,
+    //         'subscriptionId'    =>          $subscriptionId,
+    //     ];
     
-        $url = $this->url . 'subscription/getSubscription';
-        return $this->service->run($url,$fields);
-    }
+    //     $url = $this->url . 'subscription/getSubscription';
+    //     return $this->service->run($url,$fields);
+    // }
 
     /**
      * [getJobApplicants description]
@@ -573,10 +581,6 @@ Class PrismApi
     
         $url = $this->url . 'payroll/getPayrollVouchers';
         return $this->service->run($url,$fields);
-    }
-
-    public function __destruct() {
-        curl_close($this->service->handle);
     }
 
 
