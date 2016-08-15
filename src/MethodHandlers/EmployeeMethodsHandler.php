@@ -19,6 +19,25 @@ Class EmployeeMethodsHandler extends MethodsHandlerAbstract
 	}
 
 	/**
+     * [getAddressInfo description]
+     * @param  string $clientId   [description]
+     * @param  string $employeeId [description]
+     * @return json             
+     */
+    public function getAddressInfo($clientId, $employeeId)
+    {
+        $fields = [
+        'sessionId'             =>          $this->session,
+        'clientId'              =>          $clientId,
+        'employeeId'            =>          $employeeId
+        ];
+
+        $url = $this->url . '/getAddressInfo';
+        return $this->service->run($url, $fields);
+    }
+
+
+    /**
      * [getEmployee description]
      * @param  string $employeeId [description]
      * @param  string $clientId   [description]
@@ -40,9 +59,64 @@ Class EmployeeMethodsHandler extends MethodsHandlerAbstract
         'options'               =>          $options
         ];
         $url = $this->url . '/getEmployee';
-        
+
         return $this->service->run($url,$fields);
     }
 	
+    /**
+     * [getEmployeeList description]
+     * @param  string $clientId [description]
+     * @return json           includes employeeId
+     */
+    public function getEmployeeList($clientId)
+    {
+        $fields = [
+        'sessionId'             =>          $this->session,
+        'clientId'              =>          $clientId
+        ];
+
+        $url = $this->url . '/getEmployeeList';
+        return $this->service->run($url,$fields);
+    }
+
+    /**
+     * [getJobRates description]
+     * @param  string $clientId   [description]
+     * @param  string $employeeId [description]
+     * @return json             [description]
+     */
+    public function getJobRates($clientId, $employeeId)
+    {
+        $fields = [
+        'sessionId'             =>          $this->session,
+        'clientId'              =>          $clientId,
+        'employeeId'            =>          $employeeId
+        ];
+
+        $url = $this->url . '/getJobRates';
+        return $this->service->run($url,$fields);   
+    }
+
+    /**
+     * [getPayRateHistory description]
+     * @param  string $clientId   [description]
+     * @param  string $employeeId [description]
+     * @return json             
+     */
+    public function getPayRateHistory($clientId, $employeeId)
+    {
+        $fields = [
+        'sessionId'             =>          $this->session,
+        'clientId'              =>          $clientId,
+        'employeeId'            =>          $employeeId
+        ];
+
+        $url = $this->url . '/getPayRateHistory';
+        return $this->service->run($url,$fields);
+    }
+
+    
+
+    
 }
 

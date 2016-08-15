@@ -52,11 +52,13 @@ class PrismCurlService
     	// TODO: DO NOT DO THIS IN PRODUCTION
     	// if curl_exec fails
     	if($result === FALSE) {
-    		die(curl_error($handle));
+    		echo 'PrismCurlService::run : <pre>' . var_export(curl_error($handle), true) . '</pre> <br />';
+            
+            
     	}
     	// if curl_exec returns NULL
     	elseif($result == FALSE) {
-    		echo '<pre>' . var_export(curl_getinfo($handle), true) . '</pre>';
+    		echo 'PrismCurlService::run <pre>' . var_export(curl_getinfo($handle), true) . '</pre>';
     		
     	}
     	else
