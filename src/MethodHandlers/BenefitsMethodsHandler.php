@@ -6,18 +6,13 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerAbstract;
+use PrismApi\MethodHandlers\MethodsHandlerBase;
 
-Class BenefitsMethodsHandler extends MethodsHandlerAbstract
+Class BenefitsMethodsHandler extends MethodsHandlerBase
 {
     const RESTPATH = 'benefits';
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->url = $this->url . SELF::RESTPATH;
-
-    }
+    function __construct() {}
 
     // TODO: WHAT IS planId?
     /**
@@ -31,7 +26,7 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getActiveBenefitPlans($clientId, $employeeId, $planId, $effectiveDate)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'clientId'              =>          $clientId,
         'employeeId'            =>          $employeeId,
         'planId'                =>          $planId,
@@ -39,7 +34,7 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
         ];
 
         $url = $this->url . '/getActiveBenefitPlans';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -51,13 +46,13 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getActiveDependents($clientId, $employeeId)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'clientId'              =>          $clientId,
         'employeeId'            =>          $employeeId
         ];
 
         $url = $this->url . '/getActiveDependents';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }  
 
     /**
@@ -69,14 +64,14 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getActiveRetirementPlan($clientId, $employeeId, $effectiveDate)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'employeeId'        =>          $employeeId,
             'effectiveDate'     =>          $effectiveDate
         ];
     
         $url = $this->url . '/getActiveRetirementPlan';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -89,14 +84,14 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getBenefitPlans($clientId, $employeeId, $planId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'employeeId'        =>          $employeeId,
             'planId'            =>          $planId
         ];
     
         $url = $this->url . '/getBenefitPlans';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -108,13 +103,13 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getDependents($clientId, $employeeId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'employeeId'        =>          $employeeId
         ];
     
         $url = $this->url . '/getDependents';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -126,13 +121,13 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getFlexPlans($clientId, $employeeId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'employeeId'        =>          $employeeId,
         ];
     
         $url = $this->url . '/getFlexPlans';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -144,13 +139,13 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getPaidTimeOff($clientId, $employeeId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'employeeId'        =>          $employeeId,
         ];
     
         $url = $this->url . '/getPaidTimeOff';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -161,12 +156,12 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getPaidTimeOffPlans($clientId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
         ];
     
         $url = $this->url . '/getPaidTimeOffPlans';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -178,13 +173,13 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getRetirementLoans($clientId, $employeeId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'employeeId'        =>          $employeeId,
         ];
     
         $url = $this->url . '/getRetirementLoans';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -196,12 +191,12 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
     public function getRetirementPlan($clientId, $employeeId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'employeeId'        =>          $employeeId,
         ];
     
         $url = $this->url . '/getRetirementPlan';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 }

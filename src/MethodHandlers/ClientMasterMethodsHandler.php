@@ -6,18 +6,13 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerAbstract;
+use PrismApi\MethodHandlers\MethodsHandlerBase;
 
-Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
+Class ClientMasterMethodsHandler extends MethodsHandlerBase
 {
     const RESTPATH = 'clientMaster';
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->url = $this->url . SELF::RESTPATH;
-
-    }
+    function __construct() {}
 
     /**
      * [getClientCodes description]
@@ -28,13 +23,13 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
     public function getClientCodes($clientId, $options = '')
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'clientId'              =>          $clientId,
         'options'               =>          $options
         ];
 
         $url = $this->url . '/getClientCodes';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -45,12 +40,12 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
     public function getClientMaster($clientId)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'clientId'              =>          $clientId
         ];
 
         $url = $this->url . '/getClientMaster';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -61,12 +56,12 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
     public function getGeoLocations($zipCode)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'zipCode'               =>          $zipCode
         ];
 
         $url = $this->url . '/getGeoLocations';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -77,11 +72,11 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
     public function getPayrollSchedule($clientId)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'clientId'              =>          $clientId,
         ];
 
         $url = $this->url . '/getPayrollSchedule';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 }

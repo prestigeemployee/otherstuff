@@ -6,18 +6,13 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerAbstract;
+use PrismApi\MethodHandlers\MethodsHandlerBase;
 
-Class DeductionsMethodsHandler extends MethodsHandlerAbstract
+Class DeductionsMethodsHandler extends MethodsHandlerBase
 {
     const RESTPATH = 'deductions';
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->url = $this->url . SELF::RESTPATH;
-
-    }
+    function __construct() {}
     
     /**
      * [getDeductions description]
@@ -29,14 +24,14 @@ Class DeductionsMethodsHandler extends MethodsHandlerAbstract
     public function getDeductions($clientId, $employeeId, $options = '')
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'employeeId'        =>          $employeeId,
             'options'           =>          $options
         ];
     
         $url = $this->url . '/getDeductions';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
 }

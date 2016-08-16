@@ -6,18 +6,13 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerAbstract;
+use PrismApi\MethodHandlers\MethodsHandlerBase;
 
-Class TimesheetMethodsHandler extends MethodsHandlerAbstract
+Class TimesheetMethodsHandler extends MethodsHandlerBase
 {
     const RESTPATH = 'timesheet';
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->url = $this->url . SELF::RESTPATH;
-
-    }
+    function __construct() {}
 
     /**
      * [getParamData description]
@@ -28,13 +23,13 @@ Class TimesheetMethodsHandler extends MethodsHandlerAbstract
     public function getParamData($clientId, $userId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'userId'            =>          $userId,
         ];
     
         $url = $this->url . 'timesheet/getParamData';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
 }

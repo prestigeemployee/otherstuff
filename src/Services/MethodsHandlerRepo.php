@@ -6,26 +6,47 @@
 
 namespace PrismApi\Services;
 
-use PrismApi\MethodHandlers\MethodsHandlerAbstract;
-
+use PrismApi\MethodHandlers\MethodsHandlerBase;
+use PrismApi\MethodHandlers\ApplicantMethodsHandler;
+use PrismApi\MethodHandlers\BenefitsMethodsHandler;
+use PrismApi\MethodHandlers\ClientMasterMethodsHandler;
+use PrismApi\MethodHandlers\DeductionsMethodsHandler;
+use PrismApi\MethodHandlers\EmployeeMethodsHandler;
+use PrismApi\MethodHandlers\PayrollMethodsHandler;
+use PrismApi\MethodHandlers\SubscriptionMethodsHandler;
+use PrismApi\MethodHandlers\TimesheetMethodsHandler;
 
 // TODO: DO NOT DO THIS IN PRODUCTION
 
 Class MethodsHandlerRepo
 {
+	protected $methodsHandlerBase;
 	protected $methodsHandlerList = [];
 
 	function __construct()
 	{
-		$handlers = [
+		$this->methodsHandlerBase = new MethodsHandlerBase;
+		// ADD DEFAULT METHOD HANDLERS
+		$this->methodsHandlerList = [
 		new ApplicantMethodsHandler, new BenefitsMethodsHandler, new ClientMasterMethodsHandler, new DeductionsMethodsHandler, new EmployeeMethodsHandler, new PayrollMethodsHandler, new SubscriptionMethodsHandler, new TimesheetMethodsHandler
 		];
 
-		$this->methodsHandlerList = $handlers;
+		foreach($this->methodsHandlerList as $mh) {
+					
+			$this->addHandler($mh);
+		}
+
+	}
+
+	public function addHandler(MethodsHandlerBase $mh)
+	{
+		$mh->setParent($this->methodsHandlerBase);
+		$this->methodsHandlerList[] = $mh;
 	}
 
 	public function getMethodHandler($name)
 	{
+		
 		foreach ($this->methodsHandlerList as $methodsHandler)
 		{
 			if (in_array($name, $methodsHandler->listMethods()))

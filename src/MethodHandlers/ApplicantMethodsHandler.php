@@ -6,19 +6,13 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerAbstract;
+use PrismApi\MethodHandlers\MethodsHandlerBase;
 
-Class ApplicantMethodsHandler extends MethodsHandlerAbstract
+Class ApplicantMethodsHandler extends MethodsHandlerBase
 {
     const RESTPATH = 'applicant';
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->url = $this->url . SELF::RESTPATH;
-
-    }
-
+    function __construct() {}
 
     /**
      * [getJobApplicants description]
@@ -28,12 +22,12 @@ Class ApplicantMethodsHandler extends MethodsHandlerAbstract
     public function getJobApplicants($clientId)
     {
         $fields = [
-            'sessionId'             =>          $this->session,
+            'sessionId'             =>          $this->parent->session,
             'clientId'                =>          $clientId,
         ];
     
         $url = $this->url . '/getJobApplicants';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
 }

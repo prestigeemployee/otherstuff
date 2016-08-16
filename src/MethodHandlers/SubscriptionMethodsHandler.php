@@ -6,18 +6,13 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerAbstract;
+use PrismApi\MethodHandlers\MethodsHandlerBase;
 
-Class SubscriptionMethodsHandler extends MethodsHandlerAbstract
+Class SubscriptionMethodsHandler extends MethodsHandlerBase
 {
     const RESTPATH = 'subscription';
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->url = $this->url . SELF::RESTPATH;
-
-    }
+    function __construct() {}
 
 
     /**
@@ -28,12 +23,12 @@ Class SubscriptionMethodsHandler extends MethodsHandlerAbstract
     public function getAllSubscriptions($userStringId)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'userStringId'          =>          $userStringId
         ];
 
         $url = $this->url . '/getAllSubscriptions';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
     
     /**
@@ -45,13 +40,13 @@ Class SubscriptionMethodsHandler extends MethodsHandlerAbstract
     public function getEvents($subscriptionId, $replayId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'subscriptionId'    =>          $subscriptionId,
             'replayId'          =>          $replayId,
         ];
     
         $url = $this->url . '/getEvents';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -62,12 +57,12 @@ Class SubscriptionMethodsHandler extends MethodsHandlerAbstract
     public function getNewEvents($subscriptionId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'subscriptionId'    =>          $subscriptionId,
         ];
     
         $url = $this->url . '/getNewEvents';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -78,12 +73,12 @@ Class SubscriptionMethodsHandler extends MethodsHandlerAbstract
     public function getSubscription($subscriptionId)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'subscriptionId'    =>          $subscriptionId,
         ];
     
         $url = $this->url . '/getSubscription';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
     
 

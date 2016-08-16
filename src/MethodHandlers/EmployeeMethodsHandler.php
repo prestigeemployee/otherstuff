@@ -6,19 +6,15 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerAbstract;
+use PrismApi\MethodHandlers\MethodsHandlerBase;
 
-Class EmployeeMethodsHandler extends MethodsHandlerAbstract
+Class EmployeeMethodsHandler extends MethodsHandlerBase
 {
 	const RESTPATH = 'employee';
 
-	function __construct()
-	{
-		parent::__construct();
-		$this->url = $this->url . SELF::RESTPATH;
-	}
+    function __construct() {}
 
-	/**
+    /**
      * [getAddressInfo description]
      * @param  string $clientId   [description]
      * @param  string $employeeId [description]
@@ -27,13 +23,13 @@ Class EmployeeMethodsHandler extends MethodsHandlerAbstract
     public function getAddressInfo($clientId, $employeeId)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'clientId'              =>          $clientId,
         'employeeId'            =>          $employeeId
         ];
 
         $url = $this->url . '/getAddressInfo';
-        return $this->service->run($url, $fields);
+        return $this->parent->service->run($url, $fields);
     }
 
 
@@ -53,14 +49,14 @@ Class EmployeeMethodsHandler extends MethodsHandlerAbstract
         
         
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'employeeId'            =>          $employeeId,
         'clientId'              =>          $clientId,
         'options'               =>          $options
         ];
         $url = $this->url . '/getEmployee';
 
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 	
     /**
@@ -71,12 +67,12 @@ Class EmployeeMethodsHandler extends MethodsHandlerAbstract
     public function getEmployeeList($clientId)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'clientId'              =>          $clientId
         ];
 
         $url = $this->url . '/getEmployeeList';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -88,13 +84,13 @@ Class EmployeeMethodsHandler extends MethodsHandlerAbstract
     public function getJobRates($clientId, $employeeId)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'clientId'              =>          $clientId,
         'employeeId'            =>          $employeeId
         ];
 
         $url = $this->url . '/getJobRates';
-        return $this->service->run($url,$fields);   
+        return $this->parent->service->run($url,$fields);   
     }
 
     /**
@@ -106,13 +102,13 @@ Class EmployeeMethodsHandler extends MethodsHandlerAbstract
     public function getPayRateHistory($clientId, $employeeId)
     {
         $fields = [
-        'sessionId'             =>          $this->session,
+        'sessionId'             =>          $this->parent->session,
         'clientId'              =>          $clientId,
         'employeeId'            =>          $employeeId
         ];
 
         $url = $this->url . '/getPayRateHistory';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     

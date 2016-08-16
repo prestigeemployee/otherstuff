@@ -6,18 +6,13 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerAbstract;
+use PrismApi\MethodHandlers\MethodsHandlerBase;
 
-Class PayrollMethodsHandler extends MethodsHandlerAbstract
+Class PayrollMethodsHandler extends MethodsHandlerBase
 {
     const RESTPATH = 'payroll';
 
-    function __construct()
-    {
-        parent::__construct();
-        $this->url = $this->url . SELF::RESTPATH;
-
-    }
+    function __construct() {}
 
         /**
      * [getBillingVouchers description]
@@ -29,14 +24,14 @@ Class PayrollMethodsHandler extends MethodsHandlerAbstract
     public function getBillingVouchers($clientId, $payDateStart, $payDateEnd)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'payDateStart'      =>          $payDateStart,
             'payDateEnd'        =>          $payDateEnd
         ];
     
         $url = $this->url . '/getBillingVouchers';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -48,13 +43,13 @@ Class PayrollMethodsHandler extends MethodsHandlerAbstract
     public function getClientsWithVouchers($payDateStart, $paydateEnd)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'payDateStart'      =>          $payDateStart,
             'payDateEnd'        =>          $paydateEnd,
         ];
     
         $url = $this->url . '/getClientsWithVouchers';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
     /**
@@ -67,14 +62,14 @@ Class PayrollMethodsHandler extends MethodsHandlerAbstract
     public function getPayrollVouchers($clientId, $payDateStart, $payDateEnd)
     {
         $fields = [
-            'sessionId'         =>          $this->session,
+            'sessionId'         =>          $this->parent->session,
             'clientId'          =>          $clientId,
             'payDateStart'      =>          $payDateStart,
             'payDateEnd'        =>          $payDateEnd
         ];
     
         $url = $this->url . '/getPayrollVouchers';
-        return $this->service->run($url,$fields);
+        return $this->parent->service->run($url,$fields);
     }
 
 }
