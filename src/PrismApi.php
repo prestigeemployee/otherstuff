@@ -51,10 +51,10 @@ Class PrismApi
      * add a methodsHandler
      * @param MethodsHandlerAbstract $args dynamic number of MethodsHandlerAbstract arguments
      */
-    function addHandler(MethodsHandlerAbstract ... $args)
+    function addHandler(MethodsHandlerAbstract ... $handlers)
     {
-        foreach ($args as $arg) {
-            $this->methodsHandlerRepo->addHandler($arg);
+        foreach ($handlers as $handler) {
+            $this->methodsHandlerRepo->addHandler($handler);
         }
     }
 

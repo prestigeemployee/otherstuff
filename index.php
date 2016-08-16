@@ -23,7 +23,14 @@ $api = new PrismApi();
 // TODO: maybe put all MethodsHandlers in .env?
 $addingHandlersTimer = microtime(true);
 
-$api->addHandler(new ApplicantMethodsHandler, new BenefitsMethodsHandler, new ClientMasterMethodsHandler, new DeductionsMethodsHandler, new EmployeeMethodsHandler, new PayrollMethodsHandler, new SubscriptionMethodsHandler, new TimesheetMethodsHandler);
+$checkNewingUpHandlersTimer = microtime(true);
+
+
+
+echo 'Index.php, benchmarking newingUpHandlersTimer: <pre>' . var_export(number_format(( microtime(true) - $checkNewingUpHandlersTimer), 4), true) . '</pre> <br />';
+
+
+$api->addHandler($handlers);
 
 echo 'Index.php, benchmarking adding handlers: <pre>' . var_export(number_format(( microtime(true) - $addingHandlersTimer), 4), true) . '</pre> <br />';
 

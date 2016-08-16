@@ -16,11 +16,12 @@ Class MethodsHandlerRepo
 	protected $methodsHandlerList = [];
 
 	function __construct()
-	{}
-
-	public function addHandler(MethodsHandlerAbstract $mh)
 	{
-		$this->methodsHandlerList[get_class($mh)] = $mh;
+		$handlers = [
+		new ApplicantMethodsHandler, new BenefitsMethodsHandler, new ClientMasterMethodsHandler, new DeductionsMethodsHandler, new EmployeeMethodsHandler, new PayrollMethodsHandler, new SubscriptionMethodsHandler, new TimesheetMethodsHandler
+		];
+
+		$this->methodsHandlerList = $handlers;
 	}
 
 	public function getMethodHandler($name)
