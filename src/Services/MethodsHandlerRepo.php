@@ -26,16 +26,6 @@ Class MethodsHandlerRepo
 	function __construct()
 	{
 		$this->methodsHandlerBase = new MethodsHandlerBase;
-		// ADD DEFAULT METHOD HANDLERS
-		$this->methodsHandlerList = [
-		new ApplicantMethodsHandler, new BenefitsMethodsHandler, new ClientMasterMethodsHandler, new DeductionsMethodsHandler, new EmployeeMethodsHandler, new PayrollMethodsHandler, new SubscriptionMethodsHandler, new TimesheetMethodsHandler
-		];
-
-		foreach($this->methodsHandlerList as $mh) {
-					
-			$this->addHandler($mh);
-		}
-
 	}
 
 	public function addHandler(MethodsHandlerBase $mh)

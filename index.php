@@ -21,6 +21,8 @@ define('EMPLOYEEID', $_ENV['EMPLOYEEID']);
 
 $checkNewingUpPrismApiTimer = microtime(true);
 $api = new PrismApi();
+
+$api->addHandler(new ApplicantMethodsHandler, new BenefitsMethodsHandler, new ClientMasterMethodsHandler, new DeductionsMethodsHandler, new EmployeeMethodsHandler, new PayrollMethodsHandler, new SubscriptionMethodsHandler, new TimesheetMethodsHandler);
 echo 'Index.php, benchmarking NewingUpPrismApi: <pre>' . var_export(number_format(( microtime(true) - $checkNewingUpPrismApiTimer), 4), true) . '</pre> <br />';
 
 $checkRunningGetEmployeeTimer = microtime(true);
