@@ -12,6 +12,9 @@ use PrismApi\MethodHandlers\PayrollMethodsHandler;
 use PrismApi\MethodHandlers\SubscriptionMethodsHandler;
 use PrismApi\MethodHandlers\TimesheetMethodsHandler;
 
+define('CLIENTID', $_ENV['CLIENTID']);
+define('EMPLOYEEID', $_ENV['EMPLOYEEID']);
+
 /**
  * PrismApiTest
  */
@@ -23,13 +26,9 @@ class PrismApiTest extends PHPUnit\Framework\TestCase
 
 		$api = new PrismApi();
 
-		$handlers = [
-		new ApplicantMethodsHandler, new BenefitsMethodsHandler, new ClientMasterMethodsHandler, new DeductionsMethodsHandler, new EmployeeMethodsHandler, new PayrollMethodsHandler, new SubscriptionMethodsHandler, new TimesheetMethodsHandler
-		];
-
-		$api->addHandler($handlers);
-
-		$this->assertNotNull($api->getClientCodes('000100'));
+		$api->addHandler(new ApplicantMethodsHandler, new BenefitsMethodsHandler, new ClientMasterMethodsHandler, new DeductionsMethodsHandler, new EmployeeMethodsHandler, new PayrollMethodsHandler, new SubscriptionMethodsHandler, new TimesheetMethodsHandler);
+		
+		$this->assertNotNull($api->getClientCodes(CLIENTID));
 
 
 	}
