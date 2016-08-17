@@ -31,7 +31,12 @@ class MethodsHandlerBase
 		return get_class_methods($this);
 	}
 
-	public function setParent(MethodsHandlerBase $mhb)
+	/**
+	 * adds parent MethodsHandlerBase class and changes url of MethodsHandler
+	 * @param  MethodsHandlerBase $mhb parent
+	 * @return null                  
+	 */
+	public function setupMethodHandler(MethodsHandlerBase $mhb)
     {
         $this->parent = $mhb;
 

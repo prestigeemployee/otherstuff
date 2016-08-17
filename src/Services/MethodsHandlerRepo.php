@@ -30,13 +30,13 @@ Class MethodsHandlerRepo
 
 	public function addHandler(MethodsHandlerBase $mh)
 	{
-		$mh->setParent($this->methodsHandlerBase);
+		$mh->setupMethodHandler($this->methodsHandlerBase);
+		
 		$this->methodsHandlerList[] = $mh;
 	}
 
 	public function getMethodHandler($name)
-	{
-		
+	{	
 		foreach ($this->methodsHandlerList as $methodsHandler)
 		{
 			if (in_array($name, $methodsHandler->listMethods()))
