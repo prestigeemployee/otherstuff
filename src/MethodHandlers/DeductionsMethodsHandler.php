@@ -12,7 +12,11 @@ Class DeductionsMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'deductions';
 
-    function __construct() {}
+    function __construct() {
+        parent::__construct();
+        
+        $this->setUrl(self::RESTPATH);
+    }
     
     /**
      * [getDeductions description]
@@ -24,14 +28,14 @@ Class DeductionsMethodsHandler extends MethodsHandlerAbstract
     public function getDeductions($clientId, $employeeId, $options = '')
     {
         $fields = [
-            'sessionId'         =>          $this->parent->session,
+            'sessionId'         =>          $this->repo->session,
             'clientId'          =>          $clientId,
             'employeeId'        =>          $employeeId,
             'options'           =>          $options
         ];
     
         $url = $this->url . '/getDeductions';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 
 }

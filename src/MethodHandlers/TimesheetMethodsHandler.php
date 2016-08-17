@@ -12,7 +12,11 @@ Class TimesheetMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'timesheet';
 
-    function __construct() {}
+    function __construct() {
+        parent::__construct();
+        
+        $this->setUrl(self::RESTPATH);
+    }
 
     /**
      * [getParamData description]
@@ -23,13 +27,13 @@ Class TimesheetMethodsHandler extends MethodsHandlerAbstract
     public function getParamData($clientId, $userId)
     {
         $fields = [
-            'sessionId'         =>          $this->parent->session,
+            'sessionId'         =>          $this->repo->session,
             'clientId'          =>          $clientId,
             'userId'            =>          $userId,
         ];
     
         $url = $this->url . 'timesheet/getParamData';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 
 }

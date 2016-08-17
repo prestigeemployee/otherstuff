@@ -12,7 +12,11 @@ Class PayrollMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'payroll';
 
-    function __construct() {}
+    function __construct() {
+        parent::__construct();
+        
+        $this->setUrl(self::RESTPATH);
+    }
 
         /**
      * [getBillingVouchers description]
@@ -24,14 +28,14 @@ Class PayrollMethodsHandler extends MethodsHandlerAbstract
     public function getBillingVouchers($clientId, $payDateStart, $payDateEnd)
     {
         $fields = [
-            'sessionId'         =>          $this->parent->session,
+            'sessionId'         =>          $this->repo->session,
             'clientId'          =>          $clientId,
             'payDateStart'      =>          $payDateStart,
             'payDateEnd'        =>          $payDateEnd
         ];
     
         $url = $this->url . '/getBillingVouchers';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 
     /**
@@ -43,13 +47,13 @@ Class PayrollMethodsHandler extends MethodsHandlerAbstract
     public function getClientsWithVouchers($payDateStart, $paydateEnd)
     {
         $fields = [
-            'sessionId'         =>          $this->parent->session,
+            'sessionId'         =>          $this->repo->session,
             'payDateStart'      =>          $payDateStart,
             'payDateEnd'        =>          $paydateEnd,
         ];
     
         $url = $this->url . '/getClientsWithVouchers';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 
     /**
@@ -62,14 +66,14 @@ Class PayrollMethodsHandler extends MethodsHandlerAbstract
     public function getPayrollVouchers($clientId, $payDateStart, $payDateEnd)
     {
         $fields = [
-            'sessionId'         =>          $this->parent->session,
+            'sessionId'         =>          $this->repo->session,
             'clientId'          =>          $clientId,
             'payDateStart'      =>          $payDateStart,
             'payDateEnd'        =>          $payDateEnd
         ];
     
         $url = $this->url . '/getPayrollVouchers';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 
 }
