@@ -12,7 +12,11 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'clientMaster';
 
-    function __construct() {}
+    function __construct() {
+        parent::__construct();
+        
+        $this->setUrl(self::RESTPATH);
+    }
 
     /**
      * [getClientCodes description]
@@ -23,13 +27,13 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
     public function getClientCodes($clientId, $options = '')
     {
         $fields = [
-        'sessionId'             =>          $this->parent->session,
+        'sessionId'             =>          $this->repo->session,
         'clientId'              =>          $clientId,
         'options'               =>          $options
         ];
 
         $url = $this->url . '/getClientCodes';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 
     /**
@@ -40,12 +44,12 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
     public function getClientMaster($clientId)
     {
         $fields = [
-        'sessionId'             =>          $this->parent->session,
+        'sessionId'             =>          $this->repo->session,
         'clientId'              =>          $clientId
         ];
 
         $url = $this->url . '/getClientMaster';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 
     /**
@@ -56,12 +60,12 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
     public function getGeoLocations($zipCode)
     {
         $fields = [
-        'sessionId'             =>          $this->parent->session,
+        'sessionId'             =>          $this->repo->session,
         'zipCode'               =>          $zipCode
         ];
 
         $url = $this->url . '/getGeoLocations';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 
     /**
@@ -72,11 +76,11 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
     public function getPayrollSchedule($clientId)
     {
         $fields = [
-        'sessionId'             =>          $this->parent->session,
+        'sessionId'             =>          $this->repo->session,
         'clientId'              =>          $clientId,
         ];
 
         $url = $this->url . '/getPayrollSchedule';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 }

@@ -12,7 +12,11 @@ Class ApplicantMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'applicant';
 
-    function __construct() {}
+    function __construct() {
+        parent::__construct();
+        
+        $this->setUrl(self::RESTPATH);
+    }
 
     /**
      * [getJobApplicants description]
@@ -22,12 +26,12 @@ Class ApplicantMethodsHandler extends MethodsHandlerAbstract
     public function getJobApplicants($clientId)
     {
         $fields = [
-            'sessionId'             =>          $this->parent->session,
+            'sessionId'             =>          $this->repo->session,
             'clientId'                =>          $clientId,
         ];
     
         $url = $this->url . '/getJobApplicants';
-        return $this->parent->service->run($url,$fields);
+        return $this->repo->service->run($url,$fields);
     }
 
 }

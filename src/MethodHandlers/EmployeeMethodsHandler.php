@@ -14,8 +14,6 @@ Class EmployeeMethodsHandler extends MethodsHandlerAbstract
 
     function __construct() {
         parent::__construct();
-        echo 'EmployeeMethodsHandler.php-- __construct(): <pre>' . var_export($this->url, true) . '</pre> <br />';
-        
         
         $this->setUrl(self::RESTPATH);
     }
