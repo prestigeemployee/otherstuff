@@ -6,9 +6,9 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerBase;
+use PrismApi\MethodHandlers\MethodsHandlerAbstract;
 
-Class ClientMasterMethodsHandler extends MethodsHandlerBase
+Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'clientMaster';
 

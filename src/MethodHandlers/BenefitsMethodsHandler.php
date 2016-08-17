@@ -6,9 +6,9 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerBase;
+use PrismApi\MethodHandlers\MethodsHandlerAbstract;
 
-Class BenefitsMethodsHandler extends MethodsHandlerBase
+Class BenefitsMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'benefits';
 

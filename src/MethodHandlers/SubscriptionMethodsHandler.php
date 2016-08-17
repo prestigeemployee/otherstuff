@@ -6,9 +6,9 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerBase;
+use PrismApi\MethodHandlers\MethodsHandlerAbstract;
 
-Class SubscriptionMethodsHandler extends MethodsHandlerBase
+Class SubscriptionMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'subscription';
 

@@ -6,7 +6,10 @@
 
 namespace PrismApi\Services;
 
-use PrismApi\MethodHandlers\MethodsHandlerBase;
+use PrismApi\MethodHandlers\MethodsHandlerAbstract;
+use PrismApi\PrismCurlService;
+use PrismApi\PrismSessionHandler;
+
 use PrismApi\MethodHandlers\ApplicantMethodsHandler;
 use PrismApi\MethodHandlers\BenefitsMethodsHandler;
 use PrismApi\MethodHandlers\ClientMasterMethodsHandler;
@@ -20,17 +23,19 @@ use PrismApi\MethodHandlers\TimesheetMethodsHandler;
 
 Class MethodsHandlerRepo
 {
-	protected $methodsHandlerBase;
-	protected $methodsHandlerList = [];
+	public $service;
+	public $session;
+	private $methodsHandlerList = [];
 
 	function __construct()
 	{
-		$this->methodsHandlerBase = new MethodsHandlerBase;
+		$this->service = new PrismCurlService();
+		$this->session = PrismSessionHandler::makeSession();        
 	}
 
-	public function addHandler(MethodsHandlerBase $mh)
+	public function addHandler(MethodsHandlerAbstract $mh)
 	{
-		$mh->setupMethodHandler($this->methodsHandlerBase);
+		$mh->setupMethodHandler($this);
 		
 		$this->methodsHandlerList[] = $mh;
 	}

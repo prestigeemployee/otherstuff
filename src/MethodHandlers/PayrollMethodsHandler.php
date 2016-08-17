@@ -6,9 +6,9 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerBase;
+use PrismApi\MethodHandlers\MethodsHandlerAbstract;
 
-Class PayrollMethodsHandler extends MethodsHandlerBase
+Class PayrollMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'payroll';
 

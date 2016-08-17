@@ -6,9 +6,9 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerBase;
+use PrismApi\MethodHandlers\MethodsHandlerAbstract;
 
-Class DeductionsMethodsHandler extends MethodsHandlerBase
+Class DeductionsMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'deductions';
 

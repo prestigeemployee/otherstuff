@@ -7,7 +7,7 @@
 
 namespace PrismApi;
 
-use PrismApi\MethodHandlers\MethodsHandlerBase;
+use PrismApi\MethodHandlers\MethodsHandlerAbstract;
 use PrismApi\PrismCurlService;
 use PrismApi\PrismInterface;
 use PrismApi\Services\MethodsHandlerRepo;
@@ -28,7 +28,7 @@ Class PrismApi
         $this->username = $_ENV['username'];
         $this->password = $_ENV['password'];
         $this->peoId = $_ENV['peoId'];
-        // TODO: delete this later since MethodsHandlerBase will take care of it
+        // TODO: delete this later since MethodsHandlerAbstract will take care of it
         $this->url = $_ENV['url'];
 
         $this->methodsHandlerRepo = new MethodsHandlerRepo();
@@ -49,9 +49,9 @@ Class PrismApi
 
     /**
      * add a methodsHandler
-     * @param MethodsHandlerBase $args dynamic number of MethodsHandlerBase arguments
+     * @param MethodsHandlerAbstract $args dynamic number of MethodsHandlerAbstract arguments
      */
-    function addHandler(MethodsHandlerBase ... $handlers)
+    function addHandler(MethodsHandlerAbstract ... $handlers)
     {
         foreach ($handlers as $handler) {
             $this->methodsHandlerRepo->addHandler($handler);

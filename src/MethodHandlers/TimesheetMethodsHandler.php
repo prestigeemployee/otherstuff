@@ -6,9 +6,9 @@
 
 namespace PrismApi\MethodHandlers;
 
-use PrismApi\MethodHandlers\MethodsHandlerBase;
+use PrismApi\MethodHandlers\MethodsHandlerAbstract;
 
-Class TimesheetMethodsHandler extends MethodsHandlerBase
+Class TimesheetMethodsHandler extends MethodsHandlerAbstract
 {
     const RESTPATH = 'timesheet';
 
