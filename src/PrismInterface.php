@@ -19,6 +19,10 @@ interface PrismInterface
 
 	public function getPayRateHistory($clientId, $employeeId);
 
+    public function getEmployeeSSNList($clientId);
+
+    public function getEmpRestricted($employeeId, $clientId, $options = '');
+    
 	/**
 	 * subcription METHODS
 	 * 
@@ -46,6 +50,10 @@ interface PrismInterface
     public function getGeoLocations($zipCode);
 
     public function getPayrollSchedule($clientId);
+
+    public function getClientContact($clientId);
+
+    public function getClientList($inActive);
 
     /**
      * benefits METHODS
@@ -104,5 +112,30 @@ interface PrismInterface
 
     public function getPayrollVouchers($clientId, $payDateStart, $payDateEnd);
 
+    public function getPayrollNotes($clientId);
 
+    /**
+     * prismSecurity methods
+     * 
+     */
+
+    public function getClientList($prismUserId);
+
+    public function isClientAllowed($prismUserId, $clientId);
+
+    public function isEmployeeAllowed($prismUserId, $clientId, $employeeId);
+
+    /**
+     * taxRate
+     * 
+     */
+
+    public function getTaxRate($workersCompPolicyId, $workersCompClass, $employerId, $effectiveDate, $clientId, $stateCode, $mode);
+
+    public function getWorkersCompClasses($stateCode);
+
+    public function getWorkersCompPolicyList($effectiveDate);
+
+    public function getWorkersCompPolicyList($effectiveDate);
+       
 }

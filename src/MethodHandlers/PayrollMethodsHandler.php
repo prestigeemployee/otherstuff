@@ -76,4 +76,20 @@ Class PayrollMethodsHandler extends MethodsHandlerAbstract
         return $this->repo->service->run($url,$fields);
     }
 
+    /**
+     * [getPayrollNotes description]
+     * @param  string clientId   [description]
+     * @return json             
+     */
+    public function getPayrollNotes($clientId)
+    {
+        $fields = [
+            'sessionId'             =>          $this->repo->session,
+            'clientId'                =>          $clientId,
+        ];
+    
+        $url = $this->url . '/getPayrollNotes';
+        return $this->repo->service->run($url,$fields);
+    }
+
 }

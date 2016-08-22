@@ -83,4 +83,22 @@ Class ClientMasterMethodsHandler extends MethodsHandlerAbstract
         $url = $this->url . '/getPayrollSchedule';
         return $this->repo->service->run($url,$fields);
     }
+
+    /**
+     * [getClientList description]
+     * @param  bool inActive   [description]
+     * @return json             
+     */
+    public function getClientList($inActive)
+    {
+        $fields = [
+            'sessionId'             =>          $this->repo->session,
+            'inActive'                =>          $inActive,
+        ];
+    
+        $url = $this->url . '/getClientList';
+        return $this->repo->service->run($url,$fields);
+    }   
+
+
 }
