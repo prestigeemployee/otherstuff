@@ -27,33 +27,25 @@ $api = new PrismApi();
 $api->addHandler(new EmployeeMethodsHandler, new ApplicantMethodsHandler, new BenefitsMethodsHandler, new ClientMasterMethodsHandler, new DeductionsMethodsHandler, new PayrollMethodsHandler, new PrismSecurityMethodsHandler, new SubscriptionMethodsHandler, new TimesheetMethodsHandler, new TaxRateMethodsHandler);
 echo 'index.php, benchmarking NewingUpPrismApi: <pre>' . var_export(number_format(( microtime(true) - $checkNewingUpPrismApiTimer), 4), true) . '</pre> <br />';
 
-$checkRunningFunctionCallTimer = microtime(true);
-echo 'index.php-- running(): <pre>' . var_export($api->getClientList(true), true) . '</pre> <br />';
-echo 'index.php, benchmarking Runnin: <pre>' . var_export(number_format(( microtime(true) - $checkRunningFunctionCallTimer), 4), true) . '</pre> <br />';
+$checkgetEmployeeTimer = microtime(true);
+echo 'index.php-- getEmployee(EMPLOYEEID, CLIENTID): <pre>' . var_export($api->getEmployee(EMPLOYEEID, CLIENTID), true) . '</pre> <br />';
+echo 'index.php, benchmarking getEmployee: <pre>' . var_export(number_format(( microtime(true) - $checkgetEmployeeTimer), 4), true) . '</pre> <br />';
 
-$checkRunningFunctionCallTimer = microtime(true);
-echo 'index.php-- running(): <pre>' . var_export($api->getPayrollNotes(CLIENTID), true) . '</pre> <br />';
-echo 'index.php, benchmarking Runnin: <pre>' . var_export(number_format(( microtime(true) - $checkRunningFunctionCallTimer), 4), true) . '</pre> <br />';
+$checkgetActiveDependentsTimer = microtime(true);
+echo 'index.php-- getActiveDependents(EMPLOYEEID, CLIENTID): <pre>' . var_export($api->getActiveDependents(CLIENTID, EMPLOYEEID), true) . '</pre> <br />';
+echo 'index.php, benchmarking getActiveDependents: <pre>' . var_export(number_format(( microtime(true) - $checkgetActiveDependentsTimer), 4), true) . '</pre> <br />';
 
-$checkRunningFunctionCallTimer = microtime(true);
-echo 'index.php-- running(): <pre>' . var_export($api->isClientAllowed('something', CLIENTID), true) . '</pre> <br />';
-echo 'index.php, benchmarking Runnin: <pre>' . var_export(number_format(( microtime(true) - $checkRunningFunctionCallTimer), 4), true) . '</pre> <br />';
+$checkgetRetirementPlanTimer = microtime(true);
+echo 'index.php-- getRetirementPlan(EMPLOYEEID, CLIENTID): <pre>' . var_export($api->getRetirementPlan(CLIENTID, EMPLOYEEID), true) . '</pre> <br />';
+echo 'index.php, benchmarking getRetirementPlan: <pre>' . var_export(number_format(( microtime(true) - $checkgetRetirementPlanTimer), 4), true) . '</pre> <br />';
 
-$checkRunningFunctionCallTimer = microtime(true);
-echo 'index.php-- running(): <pre>' . var_export($api->isEmployeeAllowed('something', CLIENTID, EMPLOYEEID), true) . '</pre> <br />';
-echo 'index.php, benchmarking Runnin: <pre>' . var_export(number_format(( microtime(true) - $checkRunningFunctionCallTimer), 4), true) . '</pre> <br />';
-
-$checkRunningFunctionCallTimer = microtime(true);
-echo 'index.php-- running(): <pre>' . var_export($api->getTaxRate('string', 'string', 'something', '2016-08-20', CLIENTID, 'soet', 'heting'), true) . '</pre> <br />';
-echo 'index.php, benchmarking Runnin: <pre>' . var_export(number_format(( microtime(true) - $checkRunningFunctionCallTimer), 4), true) . '</pre> <br />';
-
-$checkRunningFunctionCallTimer = microtime(true);
-echo 'index.php-- running(): <pre>' . var_export($api->getWorkersCompClasses('NY'), true) . '</pre> <br />';
-echo 'index.php, benchmarking Runnin: <pre>' . var_export(number_format(( microtime(true) - $checkRunningFunctionCallTimer), 4), true) . '</pre> <br />';
-
-$checkRunningFunctionCallTimer = microtime(true);
-echo 'index.php-- running(): <pre>' . var_export($api->getWorkersCompPolicyList('2016-08-15'), true) . '</pre> <br />';
-echo 'index.php, benchmarking Runnin: <pre>' . var_export(number_format(( microtime(true) - $checkRunningFunctionCallTimer), 4), true) . '</pre> <br />';
+$checkgetClientMasterTimer = microtime(true);
+echo 'index.php-- getClientMaster(EMPLOYEEID, CLIENTID): <pre>' . var_export($api->getClientMaster(CLIENTID), true) . '</pre> <br />';
+echo 'index.php, benchmarking getClientMaster: <pre>' . var_export(number_format(( microtime(true) - $checkgetClientMasterTimer), 4), true) . '</pre> <br />';
 
 
+
+
+
+//////////////////////////////////////////////////////
 echo 'index.php, benchmarking runningWholeThing: <pre>' . var_export(number_format(( microtime(true) - $runningWholeThing), 4), true) . '</pre> <br />';
