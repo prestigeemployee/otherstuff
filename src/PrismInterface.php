@@ -66,7 +66,7 @@ interface PrismInterface
     
     public function getActiveRetirementPlan($clientId, $employeeId, $effectiveDate);
 
-    public function getBenefitPlans($clientId, $employeeId, $planId);
+    public function getBenefitPlans($clientId, $employeeId, $planId = NULL);
 
     public function getDependents($clientId, $employeeId);
 

@@ -82,10 +82,10 @@ Class BenefitsMethodsHandler extends MethodsHandlerAbstract
      * [getBenefitPlans description]
      * @param  string clientId   [description]
      * @param  string employeeId [description]
-     * @param  string $planId [description]
+     * @param  string $planId OPTIONAL, if null, returns list of all plans
      * @return json             
      */
-    public function getBenefitPlans($clientId, $employeeId, $planId)
+    public function getBenefitPlans($clientId, $employeeId, $planId = NULL)
     {
         $fields = [
             'sessionId'         =>          $this->repo->session,
